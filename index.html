@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#526056">
+<meta name="description" content="Wedding invitation">
+<title>Wedding Invitation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,500&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="tools"><button id="musicButton" aria-label="Play or pause music">♪</button><button id="shareButton" aria-label="Share invitation">↗</button></div>
+<div id="snap">
+<section class="page cover-page" id="cover">
+  <div class="paint"></div><div id="petals"></div>
+  <div class="cover-content reveal">
+    <div class="seal"><div class="ornament top">✤ ❦ ✤ ❧ ✤ ❦ ✤</div><p>The wedding of</p><h1 data-text="couple.coverNames"></h1><div class="ornament bottom">✤ ❦ ✤ ❧ ✤ ❦ ✤</div></div>
+    <div class="scroll-cue"><span>SCROLL TO OPEN</span><b>⌄</b></div>
+  </div>
+</section>
+<section class="page record-page" id="music">
+  <div class="paint"></div>
+  <div class="record-content reveal"><p class="eyebrow">OUR LOVE STORY</p><h2><span data-text="couple.firstName"></span> &amp; <span data-text="couple.secondName"></span></h2><p class="date" data-text="event.dateText"></p>
+    <button id="turntable" class="turntable" aria-label="Play or pause wedding song"><div class="vinyl"><div class="vinyl-label">LOVE<br>STORY</div></div><div class="tonearm"></div><span class="note n1">♪</span><span class="note n2">♫</span><span class="note n3">♪</span><small>TAP RECORD TO PLAY</small></button>
+    <div class="scroll-cue"><span>KEEP SCROLLING</span><b>⌄</b></div>
+  </div>
+</section>
+<section class="page invite-page" id="invitation">
+  <div class="olive-texture"></div>
+  <article class="paper reveal"><div class="paper-ornament">❦ ✤ ❦</div><p class="opening" data-text="invitation.opening"></p><h3><span data-text="invitation.hostOne"></span><small>&amp;</small><span data-text="invitation.hostTwo"></span></h3><p data-text="invitation.message"></p><div class="couple-script"><span data-text="couple.firstName"></span><small>&amp;</small><span data-text="couple.secondName"></span></div><p class="event"><span data-text="event.dateText"></span><br><span data-text="event.timeText"></span></p><p class="venue" data-text="event.venue"></p></article>
+  <div class="scroll-cue dark"><span>EVENT DETAILS</span><b>⌄</b></div>
+</section>
+<section class="page countdown-page" id="countdown-page">
+  <div class="paint muted"></div>
+  <div class="panel reveal"><p class="eyebrow">COUNTING DOWN TO FOREVER</p><h2 data-text="couple.fullNames"></h2><div id="countdown" class="countdown"></div><div class="details"><div><b>◷</b><h3 data-text="event.timeText"></h3><p>Celebration time</p></div><div><b>⌖</b><h3 data-text="event.venue"></h3><p data-text="event.address"></p></div><div><b>♙</b><h3 data-text="event.dressCode"></h3><p data-text="event.parking"></p></div></div></div>
+  <div class="scroll-cue"><span>LOCATION</span><b>⌄</b></div>
+</section>
+<section class="page location-page" id="location">
+  <div class="map-pattern"></div><div class="location-card reveal"><p class="eyebrow">FIND YOUR WAY</p><h2 data-text="event.venue"></h2><p data-text="event.address"></p><div class="location-actions"><button data-open="event.googleMaps">Google Maps</button><button data-open="event.waze">Waze</button></div><small>Add both links inside config.js</small></div>
+  <div class="scroll-cue dark"><span>OUR GALLERY</span><b>⌄</b></div>
+</section>
+<section class="page gallery-page" id="gallery"><div class="gallery-wrap reveal"><p class="eyebrow">CAPTURED MOMENTS</p><h2>Our Gallery</h2><div id="galleryGrid" class="gallery-grid"></div><p class="gallery-help">Replace the sample filenames inside assets/images.</p></div><div class="scroll-cue dark"><span>RSVP</span><b>⌄</b></div></section>
+<section class="page rsvp-page" id="rsvp"><div class="paint muted"></div><form id="rsvpForm" class="rsvp-card reveal"><p class="eyebrow">KINDLY RESPOND</p><h2>RSVP</h2><label>Guest name<input id="guestName" required placeholder="Your name"></label><label>Attendance<select id="attendance"><option>Attending</option><option>Unable to attend</option></select></label><label>Number of guests<input id="guestCount" type="number" value="1" min="1"></label><button type="submit">Send via WhatsApp</button></form><div class="scroll-cue"><span>ONE LAST PAGE</span><b>⌄</b></div></section>
+<section class="page gift-page" id="gift"><div class="gift-card reveal"><div class="gift-icon">♧</div><p class="eyebrow">WITH GRATITUDE</p><h2>Wedding Gift</h2><p data-text="gift.note"></p><div class="bank"><small data-text="gift.bank"></small><h3 data-text="gift.accountName"></h3><button id="copyAccount" data-text="gift.accountNumber"></button></div><h4>Thank you</h4><p data-text="hashtag"></p><button id="backTop">Back to beginning ↑</button></div></section>
+</div>
+<audio id="audio" loop></audio><div id="toast"></div>
+<script src="config.js"></script><script src="script.js"></script>
+</body></html>

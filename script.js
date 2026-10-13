@@ -1,0 +1,18 @@
+const C=window.WEDDING;
+const value=path=>path.split('.').reduce((o,k)=>o?.[k],C);
+document.querySelectorAll('[data-text]').forEach(el=>el.textContent=value(el.dataset.text)||'');
+const snap=document.querySelector('#snap'),audio=document.querySelector('#audio'),musicButton=document.querySelector('#musicButton'),turntable=document.querySelector('#turntable');
+audio.src=C.media.song;
+function setPlaying(on){turntable.classList.toggle('playing',on);musicButton.textContent=on?'Ⅱ':'♪'}
+async function toggleMusic(){if(audio.paused){try{await audio.play();setPlaying(true)}catch{toast('Upload assets/music/wedding-song.mp3 first.')}}else{audio.pause();setPlaying(false)}}
+musicButton.onclick=toggleMusic;turntable.onclick=toggleMusic;
+const petals=document.querySelector('#petals');for(let i=0;i<18;i++){const s=document.createElement('span');s.style.left=(i*37%100)+'%';s.style.width=(7+i%5*2)+'px';s.style.height=(12+i%5*3)+'px';s.style.animationDelay=(i*.7%8)+'s';s.style.animationDuration=(9+i%6)+'s';petals.appendChild(s)}
+function countdown(){const diff=Math.max(0,new Date(C.event.dateISO)-new Date());const vals=[Math.floor(diff/864e5),Math.floor(diff/36e5)%24,Math.floor(diff/6e4)%60,Math.floor(diff/1e3)%60];document.querySelector('#countdown').innerHTML=['Days','Hours','Minutes','Seconds'].map((x,i)=>`<div><b>${String(vals[i]).padStart(2,'0')}</b><small>${x}</small></div>`).join('')}countdown();setInterval(countdown,1000);
+document.querySelectorAll('[data-open]').forEach(btn=>btn.onclick=()=>{const url=value(btn.dataset.open);url?window.open(url,'_blank','noopener'):toast('Add this link inside config.js first.')});
+const grid=document.querySelector('#galleryGrid');let loaded=0;C.media.photos.forEach((src,i)=>{const img=new Image();img.src=src;img.alt='Wedding photo '+(i+1);img.onload=()=>{loaded++;grid.appendChild(img)};});setTimeout(()=>{if(!loaded)grid.innerHTML='<div class="gallery-empty">Add photo-1.jpg to photo-4.jpg inside <b>assets/images</b>.</div>'},700);
+document.querySelector('#rsvpForm').onsubmit=e=>{e.preventDefault();const name=document.querySelector('#guestName').value;const attending=document.querySelector('#attendance').value;const guests=document.querySelector('#guestCount').value;const msg=`${C.rsvp.messageTitle}\nName: ${name}\nAttendance: ${attending}\nNumber of guests: ${guests}`;window.open(`https://wa.me/${C.rsvp.whatsapp.replace(/\D/g,'')}?text=${encodeURIComponent(msg)}`,'_blank','noopener')};
+document.querySelector('#copyAccount').onclick=async()=>{try{await navigator.clipboard.writeText(C.gift.accountNumber);toast('Account number copied.')}catch{toast('Copy the account number manually.')}};
+document.querySelector('#shareButton').onclick=async()=>{if(navigator.share){try{await navigator.share({title:C.couple.fullNames+' Wedding Invitation',text:'You are invited to our wedding.',url:location.href})}catch{}}else{try{await navigator.clipboard.writeText(location.href);toast('Invitation link copied.')}catch{toast('Copy the page link from your browser.')}}};
+document.querySelector('#backTop').onclick=()=>snap.scrollTo({top:0,behavior:'smooth'});
+const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.querySelectorAll('.reveal').forEach(r=>r.classList.add('visible'))}),{root:snap,threshold:.45});document.querySelectorAll('.page').forEach(p=>observer.observe(p));document.querySelector('.cover-content').classList.add('visible');
+function toast(message){const t=document.querySelector('#toast');t.textContent=message;t.classList.add('show');clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>t.classList.remove('show'),1900)}
