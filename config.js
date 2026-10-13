@@ -7,13 +7,13 @@ window.WEDDING = {
   },
   invitation: {
     opening: "IN THE NAME OF ALLAH, THE MOST GRACIOUS, THE MOST MERCIFUL",
-    hostOne: "PARENT / HOST NAME",
+    hostOne: "Wan Abdul Malek",
     hostTwo: "PARENT / HOST NAME",
     message: "Together with our families, we warmly invite you to celebrate our wedding."
   },
   event: {
-    dateISO: "2027-01-01T11:00:00+08:00",
-    dateText: "SATURDAY, 1 JANUARY 2027",
+    dateISO: "2027-03-20T11:00:00+08:00",
+    dateText: "SATURDAY, 20 March 2027",
     timeText: "11:00 AM – 4:00 PM",
     venue: "VENUE NAME",
     address: "FULL VENUE ADDRESS",
