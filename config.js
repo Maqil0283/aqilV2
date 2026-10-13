@@ -1,9 +1,9 @@
 window.WEDDING = {
   couple: {
-    coverNames: "YOUR NAMES",
-    firstName: "PARTNER ONE",
-    secondName: "PARTNER TWO",
-    fullNames: "PARTNER ONE & PARTNER TWO"
+    coverNames: "A&A",
+    firstName: "Alya",
+    secondName: "Aqil",
+    fullNames: "Wan Nurul Alya & Muhammad Aqil"
   },
   invitation: {
     opening: "IN THE NAME OF ALLAH, THE MOST GRACIOUS, THE MOST MERCIFUL",
